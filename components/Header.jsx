@@ -4,12 +4,15 @@ import Link from "next/link";
 import Menu from "./Menu";
 import MenuMobile from "./MenuMobile";
 
-import { IoMdHeartEmpty } from "react-icons/io";
+import { AiOutlineUser } from "react-icons/ai";
 import { BsCart } from "react-icons/bs";
 import { BiMenuAltRight } from "react-icons/bi";
 import { VscChromeClose } from "react-icons/vsc";
 import { fetchDataFromApi } from "@/utils/api";
 import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+import Head from "next/head";
+import { useRouter } from "next/router";
 
 const Header = () => {
     const [mobileMenu, setMobileMenu] = useState(false);
@@ -17,7 +20,9 @@ const Header = () => {
     const [show, setShow] = useState("translate-y-0");
     const [lastScrollY, setLastScrollY] = useState(0);
     const [categories, setCategories] = useState(null);
+    const router = useRouter()
 
+    
     const { cartItems } = useSelector((state) => state.cart);
 
     const controlNavbar = () => {
@@ -75,12 +80,14 @@ const Header = () => {
 
                 <div className="flex items-center gap-2 text-black">
                     {/* Icon start */}
-                    <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
-                        <IoMdHeartEmpty className="text-[19px] md:text-[24px]" />
-                        <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
-                            51
+                    <Link href={'/login'}>
+                        <div className="w-8 md:w-12 h-8 md:h-12 rounded-full flex justify-center items-center hover:bg-black/[0.05] cursor-pointer relative">
+                            <AiOutlineUser className="text-[19px] md:text-[24px]" />
+                            {/* <div className="h-[14px] md:h-[18px] min-w-[14px] md:min-w-[18px] rounded-full bg-red-600 absolute top-1 left-5 md:left-7 text-white text-[10px] md:text-[12px] flex justify-center items-center px-[2px] md:px-[5px]">
+                                51
+                            </div> */}
                         </div>
-                    </div>
+                    </Link>
                     {/* Icon end */}
 
                     {/* Icon start */}

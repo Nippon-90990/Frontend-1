@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import store from "@/store/store";
 import { Provider } from "react-redux";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -30,11 +31,14 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <Provider store={store}>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
-      </Provider>
+      <SessionProvider session={pageProps.session}>
+        <Provider store={store}>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </Provider>
+      </SessionProvider>
+
     </>
   );
 }
