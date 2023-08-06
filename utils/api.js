@@ -1,4 +1,3 @@
-import register from "@/pages/register";
 import { API_URL, STRAPI_API_TOKEN } from "./urls";
 
 export const fetchDataFromApi = async (endpoint) => {
@@ -28,16 +27,3 @@ export const makePaymentRequest = async (endpoint, payload) => {
     return data;
 };
 
-export const fetchUserFromApi = async (endpoint, registerinfo) => {
-    const res = await fetch(`${API_URL}${endpoint}`, {
-        method: "POST",
-        headers: {
-            Authorization: "Bearer " + STRAPI_API_TOKEN,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registerinfo),
-    });
-
-    const registerResponse = await res.json();
-    return data;
-};

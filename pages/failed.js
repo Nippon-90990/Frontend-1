@@ -11,8 +11,8 @@ const Failed = () => {
                     <div className="text-base mt-5">
                         For any product related query, drop an email to
                     </div>
-                    <div className="underline">shoeshopcontact@shop.com</div>
-
+                    <a> <div className="underline cursor-pointer">contact@cheapestgame.shop</div> </a>
+                    
                     <Link href="/" className="font-bold mt-5">
                         Continue Shopping
                     </Link>
